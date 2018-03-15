@@ -27,7 +27,7 @@ Dim scst_core_ri As String, scst_core_ra As String, scst_core_h As String, scst_
 Dim scst_core_x As String, scst_core_y As String, scst_core_z As String, scst_wire_r As String, scst_kern As String
 Dim scst_wire_N As String, scst_symm_term As Integer, scst_core_ang As String, scst_core_off As String
 Dim scst_h_gnd As String, cst_h_gnd As Double
-Dim A As Variant
+Dim A As Variant, 
 
 A = Array("textVals","WE-S-744822-301","WE-S-744822-222","WE-S-744822-233","WE-S-744822-110","WE-S-744822-120","WE-M-744823-601","WE-M-744823-422","WE-M-744823-305","WE-M-744823-210","WE-M-744823-220","Vitroperm - X363")
 
@@ -70,10 +70,14 @@ A = Array("textVals","WE-S-744822-301","WE-S-744822-222","WE-S-744822-233","WE-S
 		Picture 290,7,340,168,GetInstallPath + "\Library\Macros\Construct\Coils\3D Toroidal Coil - rectangular core.bmp",0,.Picture1
 		OKButton 30,312,90,21
 		CancelButton 130,312,90,21
+		OptionGroup .option_ports
+			OptionButton 310,290,160,21,"2-Port",.option_ports_2
+			OptionButton 310,311,190,14,"4-Port",.option_ports_4
 		End Dialog
 	Dim dlg As UserDialog
 	
 	'Default values
+	dlg.option_ports = 0
 	If pre.DropListBox1=0 Then
 	dlg.ri = "0"
 	dlg.ra = "0"

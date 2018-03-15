@@ -76,7 +76,7 @@ With FDSolver
      .SetResultDataSamplingMode "Automatic" 
      .SweepWeightEvanescent "1.0" 
      .AccuracyROM "1e-4" 
-     .AddSampleInterval "0.01", "0.2", "30", "Logarithmic", "False"
+     .AddSampleInterval "0.1", "0.2", "30", "Logarithmic", "False"
      .AddSampleInterval "0.2", "100", "30", "Logarithmic", "False"
      .MPIParallelization "False"
      .UseDistributedComputing "False"
@@ -124,6 +124,67 @@ End With
 '@ s-parameter post processing: yz-matrices
 
 PostProcess1D.ActivateOperation "yz-matrices", "TRUE" 
+
+
+With Mesh 
+     .MeshType "Tetrahedral" 
+     .SetCreator "High Frequency"
+End With 
+With MeshSettings 
+     .SetMeshType "Tet" 
+     .Set "Version", 1%
+     'MAX CELL - WAVELENGTH REFINEMENT 
+     .Set "StepsPerWaveNear", "4" 
+     .Set "StepsPerWaveFar", "4" 
+     .Set "PhaseErrorNear", "0.02" 
+     .Set "PhaseErrorFar", "0.02" 
+     .Set "CellsPerWavelengthPolicy", "automatic" 
+     'MAX CELL - GEOMETRY REFINEMENT 
+     .Set "StepsPerBoxNear", "35" 
+     .Set "StepsPerBoxFar", "30" 
+     .Set "ModelBoxDescrNear", "maxedge" 
+     .Set "ModelBoxDescrFar", "maxedge" 
+     'MIN CELL 
+     .Set "UseRatioLimit", "1" 
+     .Set "RatioLimit", "100" 
+     .Set "MinStep", "0" 
+     'MESHING METHOD 
+     .SetMeshType "Unstr" 
+     .Set "Method", "0" 
+End With 
+With MeshSettings 
+     .SetMeshType "Tet" 
+     .Set "CurvatureOrder", "1" 
+     .Set "CurvatureOrderPolicy", "automatic" 
+     .Set "CurvRefinementControl", "NormalTolerance" 
+     .Set "NormalTolerance", "22.5" 
+     .Set "SrfMeshGradation", "1.5" 
+     .Set "SrfMeshOptimization", "1" 
+End With 
+With MeshSettings 
+     .SetMeshType "Unstr" 
+     .Set "UseMaterials",  "1" 
+     .Set "MoveMesh", "0" 
+End With 
+With MeshSettings 
+     .SetMeshType "Tet" 
+     .Set "UseAnisoCurveRefinement", "1" 
+     .Set "UseSameSrfAndVolMeshGradation", "1" 
+     .Set "VolMeshGradation", "1.5" 
+     .Set "VolMeshOptimization", "1" 
+End With 
+With MeshSettings 
+     .SetMeshType "Unstr" 
+     .Set "SmallFeatureSize", "0" 
+     .Set "CoincidenceTolerance", "1e-006" 
+     .Set "SelfIntersectionCheck", "1" 
+     .Set "OptimizeForPlanarStructures", "0" 
+End With 
+With Mesh 
+     .SetParallelMesherMode "Tet", "maximum" 
+     .SetMaxParallelMesherThreads "Tet", "1" 
+End With 
+
 
 
 End Sub
