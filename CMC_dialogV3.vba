@@ -73,6 +73,7 @@ A = Array("textVals","WE-S-744822-301","WE-S-744822-222","WE-S-744822-233","WE-S
 		OptionGroup .option_ports
 			OptionButton 310,290,160,21,"2-Port",.option_ports_2
 			OptionButton 310,311,190,14,"4-Port",.option_ports_4
+			
 		End Dialog
 	Dim dlg As UserDialog
 	
