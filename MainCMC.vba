@@ -15,29 +15,32 @@
 'Option Explicit
 
 Sub Main ()
-ResetAll
+'ResetAll
 Dim sfilename As String
 Dim A As Variant
 Dim i As Integer
+Dim sfilename2 As String
+
 
 A = Array("CMC_dialogV3.vba","cmc_drawingV3.vba","freq_dom.vba")
 
-' beginHide
 For i = LBound(A)  To UBound(A)
 If Dir("Z:\CST\Macros\Passive\CMC\"+(A(i))) <> "" Then
 	Debug.Print(i)
-	Debug.Print(A(i))
+	Debug.Print(CStr("Z:\CST\Macros\Passive\CMC\"+A(i)))
+sfilename2=CStr("Z:\CST\Macros\Passive\CMC\"+A(i))
 
-RunScript("Z:\CST\Macros\Passive\CMC\"+A(i))
+Debug.Print(sfilename2)
+	RunScript(sfilename2)
+
 Else
 MsgBox "not Existing"
 Exit All
 End If
 Next i
 ' endHide
-'RunScript("Z:\CST\Macros\Passive\CMC\CMC_DialogV3.vba")
+'RunScript("Z:\CST\Macros\Passive\CMC\CMC_dialogV3.vba")
 'RunScript("Z:\CST\Macros\Passive\CMC\cmc_drawingV3.vba")
 'RunScript("C:\Users\MoonenDJG1\AppData\Roaming\CST AG\CST STUDIO SUITE\Library\Macros\freq_dom.mcs")
 
 End Sub
-

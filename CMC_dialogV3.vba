@@ -1,19 +1,20 @@
 ' CMC_dialog
 
 Sub Main ()
-
+' msgBox "start subroutine"
 if GetNumberOfParameters <> 0 Then
+msgBox "No parameters, exiting subroutine"
 exit sub	
 end If 	
 
 'load all parameters into script, they originate from CMC_dialogV3'
-For kk = 0 To GetNumberOfParameters-1
-	mystr = GetParameterName(kk)
-	num = GetParameterNValue(kk)
-	Debug.Print((mystr + " = " + CStr(num)))
-	Debug.Print(Evaluate(mystr))
-  MakeSureParameterExists(mystr,RestoreParameter(mystr))
-Next kk
+' For kk = 0 To GetNumberOfParameters-1
+' 	mystr = GetParameterName(kk)
+' 	num = GetParameterNValue(kk)
+' 	Debug.Print((mystr + " = " + CStr(num)))
+' 	Debug.Print(Evaluate(mystr))
+'   MakeSureParameterExists(mystr,RestoreParameter(mystr))
+' Next kk
 
 Dim cst_core_r As Double, cst_core_w As Double, cst_core_h As Double
 Dim cst_core_x As Double, cst_core_y As Double, cst_core_z As Double, cst_wire_r As Double
@@ -27,17 +28,27 @@ Dim scst_core_ri As String, scst_core_ra As String, scst_core_h As String, scst_
 Dim scst_core_x As String, scst_core_y As String, scst_core_z As String, scst_wire_r As String, scst_kern As String
 Dim scst_wire_N As String, scst_symm_term As Integer, scst_core_ang As String, scst_core_off As String
 Dim scst_h_gnd As String, cst_h_gnd As Double
-Dim A As Variant, 
+Dim AA As Variant
 
-A = Array("textVals","WE-S-744822-301","WE-S-744822-222","WE-S-744822-233","WE-S-744822-110","WE-S-744822-120","WE-M-744823-601","WE-M-744823-422","WE-M-744823-305","WE-M-744823-210","WE-M-744823-220","Vitroperm - X363")
+AA = Array("textVals","WE-S-744822-301","WE-S-744822-222","WE-S-744822-233","WE-S-744822-110","WE-S-744822-120","WE-M-744823-601","WE-M-744823-422","WE-M-744823-305","WE-M-744823-210","WE-M-744823-220","Vitroperm - X363")
 
 	Begin Dialog preSets 400,203 ' %GRID:10,7,1,1
-		DropListBox 20,14,300,49,A,.DropListBox1
+		DropListBox 20,14,300,49,AA,.DropListBox1
 		OKButton 30,84,90,21
 		CancelButton 170,84,90,21
 	End Dialog
 	Dim pre As preSets
-	Dialog pre
+
+	' cst_result2 As Integer
+	cst_result2=Dialog(pre)
+	msgBox CStr(cst_result2)
+	' cst_result2 = Dialog(pre)
+	BeginHide
+    assign "cst_result2"
+	EndHide
+  	If (cst_result2 = 0) Then Exit sub
+
+
 
 'HAND1:
 	Begin Dialog UserDialog 640,343,"Create 3D Toroidal Coil, rectangular core." ' %GRID:10,7,1,1
@@ -67,18 +78,17 @@ A = Array("textVals","WE-S-744822-301","WE-S-744822-222","WE-S-744822-233","WE-S
 		OptionGroup .option_simp
 			OptionButton 310,251,160,21,"Simplify Off",.option_simp_off
 			OptionButton 310,271,190,14,"Simplify On",.option_simp_on
-		Picture 290,7,340,168,GetInstallPath + "\Library\Macros\Construct\Coils\3D Toroidal Coil - rectangular core.bmp",0,.Picture1
-		OKButton 30,312,90,21
-		CancelButton 130,312,90,21
 		OptionGroup .option_ports
 			OptionButton 310,290,160,21,"2-Port",.option_ports_2
 			OptionButton 310,311,190,14,"4-Port",.option_ports_4
-			
+		Picture 290,7,340,168,GetInstallPath + "\Library\Macros\Construct\Coils\3D Toroidal Coil - rectangular core.bmp",0,.Picture1
+		OKButton 30,312,90,21
+		CancelButton 130,312,90,21
 		End Dialog
 	Dim dlg As UserDialog
-	
+	' If (cst_result = 0) Then Exit All
 	'Default values
-	dlg.option_ports = 0
+	
 	If pre.DropListBox1=0 Then
 	dlg.ri = "0"
 	dlg.ra = "0"
@@ -249,6 +259,7 @@ A = Array("textVals","WE-S-744822-301","WE-S-744822-222","WE-S-744822-233","WE-S
 	dlg.option_kern = 1
 	dlg.option_simp = 0
 	End If
+	dlg.option_ports = 0
 
 	cst_result = Dialog(dlg)
 BeginHide
@@ -284,7 +295,7 @@ BeginHide
   assign "cst_simp"
   assign "scst_h_gnd"
   assign "cst_wire_r"
-  assign "cst_phases_N"
+  ' assign "cst_phases_N"
 EndHide
 
   

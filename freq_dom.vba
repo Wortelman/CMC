@@ -16,6 +16,20 @@ Solver.FrequencyRange "0.1", "100"
 
 Mesh.SetCreator "High Frequency" 
 
+' msgBox "net voor Background"
+With Background 
+     .Reset 
+     .Type ("normal")
+     .XminSpace "0.0" 
+     .XmaxSpace "0.0" 
+     .YminSpace "0.0" 
+     .YmaxSpace "0.0" 
+     .ZminSpace "0.0" 
+     .ZmaxSpace "0.0" 
+     .ApplyInAllDirections "False" 
+End With 
+
+
 With FDSolver
      .Reset 
      .SetMethod "Tetrahedral", "General purpose" 
@@ -183,7 +197,73 @@ End With
 With Mesh 
      .SetParallelMesherMode "Tet", "maximum" 
      .SetMaxParallelMesherThreads "Tet", "1" 
-End With 
+end With
+
+
+' With Material 
+'      .Reset 
+'      .FrqType "all"
+'      .Type "Normal"
+'      .MaterialUnit "Frequency", "Hz"
+'      .MaterialUnit "Geometry", "m"
+'      .MaterialUnit "Time", "s"
+'      .MaterialUnit "Temperature", "Kelvin"
+'      .Epsilon "1"
+'      .Mu "1"
+'      .Sigma "0.0"
+'      .TanD "0.0"
+'      .TanDFreq "0.0"
+'      .TanDGiven "False"
+'      .TanDModel "ConstSigma"
+'      .EnableUserConstTanDModelOrderEps "False"
+'      .ConstTanDModelOrderEps "1"
+'      .SetElParametricConductivity "False"
+'      .ReferenceCoordSystem "Global"
+'      .CoordSystemType "Cartesian"
+'      .SigmaM "0"
+'      .TanDM "0.0"
+'      .TanDMFreq "0.0"
+'      .TanDMGiven "False"
+'      .TanDMModel "ConstSigma"
+'      .EnableUserConstTanDModelOrderMu "False"
+'      .ConstTanDModelOrderMu "1"
+'      .SetMagParametricConductivity "False"
+'      .DispModelEps  "None"
+'      .DispModelMu "None"
+'      .DispersiveFittingSchemeEps "Nth Order"
+'      .MaximalOrderNthModelFitEps "10"
+'      .ErrorLimitNthModelFitEps "0.1"
+'      .UseOnlyDataInSimFreqRangeNthModelEps "False"
+'      .DispersiveFittingSchemeMu "Nth Order"
+'      .MaximalOrderNthModelFitMu "10"
+'      .ErrorLimitNthModelFitMu "0.1"
+'      .UseOnlyDataInSimFreqRangeNthModelMu "False"
+'      .UseGeneralDispersionEps "False"
+'      .UseGeneralDispersionMu "False"
+'      .NonlinearMeasurementError "1e-1"
+'      .NLAnisotropy "False"
+'      .NLAStackingFactor "1"
+'      .NLADirectionX "1"
+'      .NLADirectionY "0"
+'      .NLADirectionZ "0"
+'      .Rho "0"
+'      .ThermalType "Normal"
+'      .ThermalConductivity "0"
+'      .HeatCapacity "0"
+'      .DynamicViscosity "0"
+'      .Emissivity "0"
+'      .MetabolicRate "0"
+'      .BloodFlow "0"
+'      .VoxelConvection "0"
+'      .MechanicsType "Unused"
+'      .Colour "0.6", "0.6", "0.6" 
+'      .Wireframe "False" 
+'      .Reflection "False" 
+'      .Allowoutline "True" 
+'      .Transparentoutline "False" 
+'      .Transparency "0" 
+'      .ChangeBackgroundMaterial
+' End With 
 
 
 
