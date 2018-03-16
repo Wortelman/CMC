@@ -39,10 +39,8 @@ AA = Array("textVals","WE-S-744822-301","WE-S-744822-222","WE-S-744822-233","WE-
 	End Dialog
 	Dim pre As preSets
 
-	' cst_result2 As Integer
 	cst_result2=Dialog(pre)
-	msgBox CStr(cst_result2)
-	' cst_result2 = Dialog(pre)
+	' msgBox CStr(cst_result2)
 	BeginHide
     assign "cst_result2"
 	EndHide
@@ -261,6 +259,8 @@ AA = Array("textVals","WE-S-744822-301","WE-S-744822-222","WE-S-744822-233","WE-
 	End If
 	dlg.option_ports = 0
 
+	dim portOption as Integer
+
 	cst_result = Dialog(dlg)
 BeginHide
     assign "cst_result"
@@ -278,6 +278,8 @@ EndHide
   scst_h_gnd = dlg.h_gnd
   cst_kern = Cint(dlg.option_kern)
   cst_simp = Cint(dlg.option_simp)
+  portOption = Cint(dlg.option_ports)
+  ' cst_phases_N = Evaluate(dlg.ph)
 
 
 BeginHide
@@ -291,10 +293,12 @@ BeginHide
   assign "scst_symm_term"
   assign "scst_lead"
   assign "scst_phases"
+
   assign "cst_kern"
   assign "cst_simp"
   assign "scst_h_gnd"
   assign "cst_wire_r"
+  assign "portOption"
   ' assign "cst_phases_N"
 EndHide
 
@@ -371,6 +375,9 @@ REM BeginHide
 
 	StoreDoubleParameter "remove", Cint(0)
 	SetParameterDescription  ( "remove",  "Option to Remove all parameters"  )
+
+	StoreDoubleParameter "portOption", Cint(dlg.option_ports)
+	SetParameterDescription  ( "portOption",  "Option to draw 2 or 4 ports"  )
 
 
 

@@ -20,12 +20,12 @@ Mesh.SetCreator "High Frequency"
 With Background 
      .Reset 
      .Type ("normal")
-     .XminSpace "0.0" 
-     .XmaxSpace "0.0" 
-     .YminSpace "0.0" 
-     .YmaxSpace "0.0" 
-     .ZminSpace "0.0" 
-     .ZmaxSpace "0.0" 
+     .XminSpace "10" 
+     .XmaxSpace "10" 
+     .YminSpace "10" 
+     .YmaxSpace "10" 
+     .ZminSpace "10" 
+     .ZmaxSpace "10" 
      .ApplyInAllDirections "False" 
 End With 
 
@@ -154,8 +154,8 @@ With MeshSettings
      .Set "PhaseErrorFar", "0.02" 
      .Set "CellsPerWavelengthPolicy", "automatic" 
      'MAX CELL - GEOMETRY REFINEMENT 
-     .Set "StepsPerBoxNear", "35" 
-     .Set "StepsPerBoxFar", "30" 
+     .Set "StepsPerBoxNear", "15" 
+     .Set "StepsPerBoxFar", "10" 
      .Set "ModelBoxDescrNear", "maxedge" 
      .Set "ModelBoxDescrFar", "maxedge" 
      'MIN CELL 
